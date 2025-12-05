@@ -7,14 +7,14 @@ interface QuestionContainerProps {
 
 export function QuestionContainer({ question }: QuestionContainerProps){
   return (
-    <div className="grid gap-3 p-5 rounded-md bg-white shadow-sm">
-      <p className="cursor-default">{question.text}</p>
+    <div className="grid gap-2 sm:gap-3 p-3 sm:p-5 rounded-md bg-white shadow-sm">
+      <p className="cursor-default wrap-break-word">{question.text}</p>
       
       {question.alternatives.map((alternative) => (
         <Alternative key={alternative.id} alternative={alternative} />
       ))}
       
-      <p className="text-xs text-gray-400 cursor-default">{question.track}</p>
+      <p className="text-xs text-gray-400 cursor-default mt-1">{question.track}</p>
     </div>
   )
 }
