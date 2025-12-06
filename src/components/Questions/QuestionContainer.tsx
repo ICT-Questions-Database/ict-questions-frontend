@@ -7,7 +7,7 @@ interface QuestionContainerProps {
 
 export function QuestionContainer({ question }: QuestionContainerProps){
   return (
-    <div className="grid gap-2 sm:gap-3 p-3 sm:p-5 rounded-md bg-white shadow-sm">
+    <div className="grid gap-2 sm:gap-3 p-3 sm:p-5 rounded-lg bg-white shadow-sm">
       <p className="cursor-default wrap-break-word">{question.text}</p>
       
       {question.alternatives.map((alternative) => (

@@ -1,3 +1,4 @@
+import { FilterBar } from "../components/FilterBar";
 import { QuestionContainer } from "../components/Questions/QuestionContainer";
 import { Searchbar } from "../components/Searchbar";
 import { Questions } from "../data/Data";
@@ -7,13 +8,22 @@ export function QuestionsPage() {
   const questions: Question[] = Questions;
 
   return (
-    <div className="grid gap-18 p-10 bg-gray-100">
-      <Searchbar />
+    <div className="grid grid-cols-5 gap-18 p-10 bg-gray-100">
+      <FilterBar />
       
-      <div className="grid gap-10">
-        {questions.map((question) => (
-          <QuestionContainer question={question} />
-        ))}
+      <div className="grid col-span-3 gap-15">
+        <Searchbar />
+        
+        <div className="grid gap-7">
+          {questions.map((question) => (
+            <QuestionContainer 
+              key={question.id}
+              question={question} 
+            />
+          ))}
+        </div>
+        
+        <div/>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
+export const QUESTION_TRACKS = [ 'Cloud', 'Network', 'Computing' ] as const
+export type QuestionTrack = typeof QUESTION_TRACKS[number]
 export type QuestionLevel = 'HCIA' | 'HCIP' | 'HCIE'
-export type QuestionTrack = 'Cloud' | 'Network' | 'Computing'
 
 export interface Source {
   id: number
