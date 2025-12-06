@@ -7,6 +7,8 @@ interface Filters {
 }
 
 export function FilterBar(){
+  const TrackButtonClasses = "cursor-pointer py-4 px-6 mt-1 mb-1 border rounded-xl transition duration-250 ease-in-out text-center"
+  const FilterCheckboxClasses = "appearance-none cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
   const [ filters, setFilters ] = useState<Filters>(
     {
       questionTrack: [],
@@ -39,9 +41,13 @@ export function FilterBar(){
         <label 
           key={track}
           className={
-            filters.questionTrack.includes(track)
-              ? "cursor-pointer py-4 px-6 mt-1 mb-1 border border-[#3B82F6] bg-[#E0E7FF] rounded-xl transition duration-250 ease-in-out text-center"
-              : "cursor-pointer py-4 px-6 mt-1 mb-1 border border-gray-300 bg-white rounded-xl transition duration-250 ease-in-out text-center"
+            `
+              ${TrackButtonClasses}
+              ${filters.questionTrack.includes(track)
+                ? "border-[#3B82F6] bg-[#E0E7FF]"
+                : "border-gray-300 bg-white"
+              }
+            `
           }
         >
           <input
@@ -65,9 +71,12 @@ export function FilterBar(){
         <input 
           type="checkbox"
           className={
-            filters.has_answer
-            ? "appearance-none cursor-pointer w-7 h-7 border-2 border-[#3B82F6] rounded-lg bg-[#3B82F6] transition duration-250 ease-in-out"
-            : "appearance-none cursor-pointer w-7 h-7 border-2 border-gray-400 rounded-lg bg-white transition duration-250 ease-in-out"
+            `
+              ${FilterCheckboxClasses}
+              ${filters.has_answer
+              ? "border-[#3B82F6] bg-[#3B82F6]"
+              : "border-gray-400 bg-white"}
+            `
           }
           checked={filters.has_answer}
           onChange={handleFilterChange}
