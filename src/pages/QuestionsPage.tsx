@@ -1,4 +1,5 @@
 import { FilterBar } from "../components/FilterBar";
+import { Navbar } from "../components/Navbar";
 import { QuestionContainer } from "../components/Questions/QuestionContainer";
 import { Searchbar } from "../components/Searchbar";
 import { Questions } from "../data/Data";
@@ -10,21 +11,23 @@ export function QuestionsPage() {
   return (
     <div className="grid grid-cols-5 gap-18 p-10 bg-gray-100">
       <FilterBar />
-      
+
       <div className="grid col-span-3 gap-15">
         <Searchbar />
-        
+
         <div className="grid gap-7">
           {questions.map((question) => (
-            <QuestionContainer 
+            <QuestionContainer
               key={question.id}
-              question={question} 
+              question={question}
             />
           ))}
         </div>
-        
-        <div/>
+
+        <div />
       </div>
-    </div>
+
+      <Navbar />
+    </div >
   );
 }
