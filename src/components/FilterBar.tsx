@@ -6,7 +6,11 @@ interface Filters {
   has_answer: boolean
 }
 
-export function FilterBar(){
+interface FilterBarProps {
+  onChange: (filters: Filters) => void
+}
+
+export function FilterBar({ onChange }: FilterBarProps){
   const TrackButtonClasses = "cursor-pointer py-4 px-6 mt-1 mb-1 border rounded-xl transition duration-250 ease-in-out text-center"
   const FilterCheckboxClasses = "appearance-none cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
   const [ filters, setFilters ] = useState<Filters>(
@@ -16,22 +20,30 @@ export function FilterBar(){
     })
   
   function handleTrackChange(track: QuestionTrack) {
-    setFilters(prev => ({
-      ...prev,
-      questionTrack: prev.questionTrack.includes(track)
-        ? prev.questionTrack.filter(qt => qt !== track)
-        : [...prev.questionTrack, track]
-    }))
+    const updatedTracks = filters.questionTrack.includes(track)
+      ? filters.questionTrack.filter(qt => qt !== track)
+      : [...filters.questionTrack, track]
+
+    const newFilters = {
+      ...filters,
+      questionTrack: updatedTracks
+    }
+
+    setFilters(newFilters)
+    onChange(newFilters)
   }
+
   
   function handleFilterChange() {
-    setFilters(prev => ({
-      ...prev,
-      has_answer: prev.has_answer
-        ? false
-        : true
-    }))
+    const newFilters = {
+      ...filters,
+      has_answer: !filters.has_answer
+    }
+
+    setFilters(newFilters)
+    onChange(newFilters)
   }
+
   
   return (
     <div className="grid gap-3 sticky h-fit w-64">
