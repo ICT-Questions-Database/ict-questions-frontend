@@ -4,10 +4,11 @@ import { Navbar } from "../components/Navbar";
 import { QuestionContainer } from "../components/Questions/QuestionContainer";
 import { Searchbar } from "../components/Searchbar";
 import type { Question } from "../models/Question";
+import { PaginationButton } from "../components/PaginationButton";
 // import { Questions } from "../data/Data";
 
-async function getQuestions(): Promise<Question[]> {
-  const response = await fetch('http://localhost:8001/api/v1/questions', {
+async function getQuestions(page: number): Promise<Question[]> {
+  const response = await fetch(`http://localhost:8001/api/v1/questions/?page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -19,15 +20,19 @@ async function getQuestions(): Promise<Question[]> {
 }
 
 export function QuestionsPage() {
-  // const questions: Question[]: Questions;
+  // const questions: Question[] = Questions;
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    getQuestions()
+    getQuestions(currentPage)
       .then((data: Question[]) => {
         setQuestions(data);
+        window.scrollTo({
+          top: 0,
+        });
       })
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="grid grid-cols-5 gap-18 p-10 bg-gray-100">
@@ -44,8 +49,11 @@ export function QuestionsPage() {
             />
           ))}
         </div>
-
-        <div />
+        
+        <PaginationButton
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
 
       <Navbar />
