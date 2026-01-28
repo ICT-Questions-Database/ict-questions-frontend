@@ -40,7 +40,7 @@ export function QuestionsPage() {
   }, [currentPage]);
 
   return (
-    <div className="grid grid-cols-5 gap-18 p-10 bg-gray-100">
+    <div className="min-h-screen grid grid-cols-5 gap-18 p-10 bg-gray-100">
       <FilterBar 
       setCurrentPage={setCurrentPage}
       />
