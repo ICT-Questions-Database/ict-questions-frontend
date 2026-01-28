@@ -34,7 +34,7 @@ export function FilterBar(){
   }
   
   return (
-    <div className="grid gap-3 sticky h-fit w-64">
+    <div className="grid gap-3 fixed h-fit w-64">
       <p className="text-xl">Trilhas</p>
       
       {QUESTION_TRACKS.map((track) => (
