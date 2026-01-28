@@ -41,7 +41,9 @@ export function QuestionsPage() {
 
   return (
     <div className="grid grid-cols-5 gap-18 p-10 bg-gray-100">
-      <FilterBar />
+      <FilterBar 
+      setCurrentPage={setCurrentPage}
+      />
 
       <div className="grid col-start-2 col-span-3 gap-15">
         <Searchbar />

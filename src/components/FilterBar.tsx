@@ -1,19 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QUESTION_TRACKS, type QuestionTrack } from "../models/Question";
 
+interface FilterBarProps {
+  setCurrentPage: React.Dispatch<React.SetStateAction<string>>
+}
+
 interface Filters {
-  questionTrack: QuestionTrack[],
+  questionTrack: QuestionTrack[]
   has_answer: boolean
 }
 
-export function FilterBar(){
+export function FilterBar({ setCurrentPage }: FilterBarProps){
   const TrackButtonClasses = "cursor-pointer py-4 px-6 mt-1 mb-1 border rounded-xl transition duration-250 ease-in-out text-center"
   const FilterCheckboxClasses = "appearance-none cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
   const [ filters, setFilters ] = useState<Filters>(
     {
       questionTrack: [],
-      has_answer: false
+      has_answer: true
+    }
+  )
+
+  useEffect(() => {
+    const baseURL = 'http://localhost:8001/api/v1/questions/';
+    const params = new URLSearchParams();
+    params.append('has_answer', filters.has_answer.toString());
+    
+    filters.questionTrack.forEach(track => {
+      params.append('track', track);
     })
+    
+    setCurrentPage(`${baseURL}?${params.toString()}`);
+  }, [filters, setCurrentPage]);
   
   function handleTrackChange(track: QuestionTrack) {
     setFilters(prev => ({
