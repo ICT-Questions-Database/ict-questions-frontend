@@ -45,7 +45,7 @@ export function QuestionsPage() {
       setCurrentPage={setCurrentPage}
       />
 
-      <div className="grid col-start-2 col-span-3 gap-15">
+      <div className="grid col-start-2 col-span-3 gap-15 items-start">
         <Searchbar />
 
         <div className="grid gap-7">
