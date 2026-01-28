@@ -4,11 +4,12 @@ import { Navbar } from "../components/Navbar";
 import { QuestionContainer } from "../components/Questions/QuestionContainer";
 import { Searchbar } from "../components/Searchbar";
 import type { Question } from "../models/Question";
+import type { QuestionsGetResponse } from "../models/QuestionsGetResponse";
 import { PaginationButton } from "../components/PaginationButton";
 // import { Questions } from "../data/Data";
 
-async function getQuestions(page: number): Promise<Question[]> {
-  const response = await fetch(`http://localhost:8001/api/v1/questions/?page=${page}`, {
+async function getResponse(pageUrl: string): Promise<QuestionsGetResponse>{
+  const response = await fetch(`${pageUrl}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -16,18 +17,22 @@ async function getQuestions(page: number): Promise<Question[]> {
   });
 
   const data = await response.json();
-  return data['results'];
+  return data;
 }
 
 export function QuestionsPage() {
   // const questions: Question[] = Questions;
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
+  const [currentPage, setCurrentPage] = useState<string>('http://localhost:8001/api/v1/questions/?page=1');
+  const [nextPage, setNextPage] = useState<string | null>(null);
+  const [previousPage, setPreviousPage] = useState<string | null>(null);
+  
   useEffect(() => {
-    getQuestions(currentPage)
-      .then((data: Question[]) => {
-        setQuestions(data);
+    getResponse(currentPage)
+      .then((data: QuestionsGetResponse) => {
+        setQuestions(data.results);
+        setNextPage(data.next);
+        setPreviousPage(data.previous);
         window.scrollTo({
           top: 0,
         });
@@ -48,13 +53,27 @@ export function QuestionsPage() {
               question={question}
             />
           ))}
+        </div> 
+
+        <div className="flex justify-evenly">
+          { previousPage && 
+            <PaginationButton 
+              label="Página Anterior"
+              newPage={previousPage}
+              setCurrentPage={setCurrentPage}
+            /> 
+          }
+          
+          { nextPage &&
+            <PaginationButton 
+              label="Próxima Página"
+              newPage={nextPage}
+              setCurrentPage={setCurrentPage}
+            /> 
+          }
         </div>
-        
-        <PaginationButton
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
       </div>
+      
 
       <Navbar />
     </div >
