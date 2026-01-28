@@ -56,21 +56,17 @@ export function QuestionsPage() {
         </div> 
 
         <div className="flex justify-evenly">
-          { previousPage && 
-            <PaginationButton 
-              label="Página Anterior"
-              newPage={previousPage}
-              setCurrentPage={setCurrentPage}
-            /> 
-          }
+          <PaginationButton 
+            label="Página Anterior"
+            newPage={previousPage}
+            setCurrentPage={setCurrentPage}
+          />
           
-          { nextPage &&
-            <PaginationButton 
-              label="Próxima Página"
-              newPage={nextPage}
-              setCurrentPage={setCurrentPage}
-            /> 
-          }
+          <PaginationButton 
+            label="Próxima Página"
+            newPage={nextPage}
+            setCurrentPage={setCurrentPage}
+          /> 
         </div>
       </div>
       
