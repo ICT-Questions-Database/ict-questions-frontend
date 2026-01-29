@@ -12,7 +12,7 @@ interface Filters {
 
 export function FilterBar({ setCurrentPage }: FilterBarProps) {
   const TrackButtonClasses = "cursor-pointer py-4 px-6 mt-1 mb-1 border rounded-xl transition duration-250 ease-in-out text-center"
-  const FilterCheckboxClasses = "appearance-none cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
+  const FilterCheckboxClasses = "appearance-none shrink-0 cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
   const [filters, setFilters] = useState<Filters>(
     {
       questionTrack: [],

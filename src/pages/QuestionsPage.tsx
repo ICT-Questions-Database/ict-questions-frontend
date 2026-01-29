@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar";
 import { QuestionContainer } from "../components/Questions/QuestionContainer";
 import { Searchbar } from "../components/Searchbar";
 import type { Question } from "../models/Question";
-import type { QuestionsGetResponse } from "../models/QuestionsGetResponse";
+import type { QuestionsGetResponse } from "../models/Questions";
 import { PaginationButton } from "../components/PaginationButton";
 // import { Questions } from "../data/Data";
 
