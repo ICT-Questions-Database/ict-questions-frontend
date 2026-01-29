@@ -8,7 +8,7 @@ import type { QuestionsGetResponse } from "../models/QuestionsGetResponse";
 import { PaginationButton } from "../components/PaginationButton";
 // import { Questions } from "../data/Data";
 
-async function getResponse(pageUrl: string): Promise<QuestionsGetResponse>{
+async function getResponse(pageUrl: string): Promise<QuestionsGetResponse> {
   const response = await fetch(`${pageUrl}`, {
     method: 'GET',
     headers: {
@@ -26,7 +26,7 @@ export function QuestionsPage() {
   const [currentPage, setCurrentPage] = useState<string>('http://localhost:8001/api/v1/questions/?page=1');
   const [nextPage, setNextPage] = useState<string | null>(null);
   const [previousPage, setPreviousPage] = useState<string | null>(null);
-  
+
   useEffect(() => {
     getResponse(currentPage)
       .then((data: QuestionsGetResponse) => {
@@ -40,12 +40,12 @@ export function QuestionsPage() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen grid grid-cols-5 gap-18 p-10 bg-gray-100">
-      <FilterBar 
-      setCurrentPage={setCurrentPage}
+    <div className="min-h-screen p-10 bg-gray-100">
+      <FilterBar
+        setCurrentPage={setCurrentPage}
       />
 
-      <div className="grid col-start-2 col-span-3 gap-15 items-start">
+      <main className="max-w-4xl mx-auto grid gap-15 items-start px-10">
         <Searchbar />
 
         <div className="grid gap-7">
@@ -55,23 +55,23 @@ export function QuestionsPage() {
               question={question}
             />
           ))}
-        </div> 
+        </div>
 
         <div className="flex justify-evenly">
-          <PaginationButton 
+          <PaginationButton
             label="Página Anterior"
             newPage={previousPage}
             setCurrentPage={setCurrentPage}
           />
-          
-          <PaginationButton 
+
+          <PaginationButton
             label="Próxima Página"
             newPage={nextPage}
             setCurrentPage={setCurrentPage}
-          /> 
+          />
         </div>
-      </div>
-      
+      </main>
+
 
       <Navbar />
     </div >

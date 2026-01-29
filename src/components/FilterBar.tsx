@@ -10,10 +10,10 @@ interface Filters {
   has_answer: boolean
 }
 
-export function FilterBar({ setCurrentPage }: FilterBarProps){
+export function FilterBar({ setCurrentPage }: FilterBarProps) {
   const TrackButtonClasses = "cursor-pointer py-4 px-6 mt-1 mb-1 border rounded-xl transition duration-250 ease-in-out text-center"
   const FilterCheckboxClasses = "appearance-none cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
-  const [ filters, setFilters ] = useState<Filters>(
+  const [filters, setFilters] = useState<Filters>(
     {
       questionTrack: [],
       has_answer: true
@@ -24,14 +24,14 @@ export function FilterBar({ setCurrentPage }: FilterBarProps){
     const baseURL = 'http://localhost:8001/api/v1/questions/';
     const params = new URLSearchParams();
     params.append('has_answer', filters.has_answer.toString());
-    
+
     filters.questionTrack.forEach(track => {
       params.append('track', track);
     })
-    
+
     setCurrentPage(`${baseURL}?${params.toString()}`);
   }, [filters, setCurrentPage]);
-  
+
   function handleTrackChange(track: QuestionTrack) {
     setFilters(prev => ({
       ...prev,
@@ -40,7 +40,7 @@ export function FilterBar({ setCurrentPage }: FilterBarProps){
         : [...prev.questionTrack, track]
     }))
   }
-  
+
   function handleFilterChange() {
     setFilters(prev => ({
       ...prev,
@@ -49,21 +49,21 @@ export function FilterBar({ setCurrentPage }: FilterBarProps){
         : true
     }))
   }
-  
+
   return (
     <div className="grid gap-3 fixed h-fit w-64">
       <p className="text-xl">Trilhas</p>
-      
+
       {QUESTION_TRACKS.map((track) => (
-        <label 
+        <label
           key={track}
           className={
             `
               ${TrackButtonClasses}
               ${filters.questionTrack.includes(track)
-                ? "border-[#3B82F6] bg-[#E0E7FF]"
-                : "border-gray-300 bg-white"
-              }
+              ? "border-[#3B82F6] bg-[#E0E7FF]"
+              : "border-gray-300 bg-white"
+            }
             `
           }
         >
@@ -76,16 +76,16 @@ export function FilterBar({ setCurrentPage }: FilterBarProps){
           {track}
         </label>
       ))}
-      
-      <hr className="bg-gray-400 border-0 h-px my-3"/>
-      
+
+      <hr className="bg-gray-400 border-0 h-px my-3" />
+
       <p className="text-xl">Filtros</p>
-      
+
       <label
         key="has_answer"
         className="cursor-pointer flex items-center gap-3"
       >
-        <input 
+        <input
           type="checkbox"
           className={
             `
