@@ -1,10 +1,19 @@
 import { useState } from "react";
+import type { questionsParams } from "../models/QuestionsGetResponse";
 
-export function Searchbar() {
+interface SearchbarProps{
+  setParams: React.Dispatch<React.SetStateAction<questionsParams>>
+}
+
+export function Searchbar({setParams}: SearchbarProps) {
   const [userQuery, setUserQuery] = useState<string>("")
   
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setUserQuery(event.target.value)
+    setUserQuery(event.target.value);
+    setParams(prev => ({
+      ...prev,
+      text: event.target.value
+    }))
   }
   
   return (

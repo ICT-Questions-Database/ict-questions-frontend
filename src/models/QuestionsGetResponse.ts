@@ -6,3 +6,10 @@ export interface QuestionsGetResponse {
   previous: string | null
   results: Question[]
 }
+
+export interface questionsParams {
+  page: number
+  text: string
+  track: string[]
+  has_answer: boolean
+}
