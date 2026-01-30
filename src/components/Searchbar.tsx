@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { questionsParams } from "../models/QuestionsGetResponse";
 
 interface SearchbarProps{
@@ -10,11 +10,19 @@ export function Searchbar({setParams}: SearchbarProps) {
   
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setUserQuery(event.target.value);
-    setParams(prev => ({
-      ...prev,
-      text: event.target.value
-    }))
   }
+  
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setParams(prev => ({
+        ...prev,
+        text: userQuery
+      }))
+    }, 500)
+    return () => {
+      clearTimeout(timerId)
+    };
+  }, [userQuery, setParams]);
   
   return (
     <input
