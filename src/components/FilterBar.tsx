@@ -46,7 +46,8 @@ export function FilterBar({setParams}: FilterBarProps) {
         : true
     }))
   }
-
+  
+  let checked = !filters.has_answer
   return (
     <div className="grid gap-3 fixed h-fit w-64">
       <p className="text-xl">Trilhas</p>
@@ -88,14 +89,14 @@ export function FilterBar({setParams}: FilterBarProps) {
             `
               ${FilterCheckboxClasses}
               ${filters.has_answer
-              ? "border-[#3B82F6] bg-[#3B82F6]"
-              : "border-gray-400 bg-white"}
+              ? "border-gray-400 bg-white"
+              : "border-[#3B82F6] bg-[#3B82F6]"}
             `
           }
-          checked={filters.has_answer}
+          checked={!filters.has_answer}
           onChange={handleFilterChange}
         />
-        <p className="text-gray-500 text-lg wrap-break-word">Mostrar questões respondidas</p>
+        <p className="text-gray-500 text-lg wrap-break-word">Mostrar questões não respondidas</p>
       </label>
     </div>
   )
