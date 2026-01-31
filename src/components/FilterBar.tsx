@@ -11,7 +11,7 @@ interface Filters {
   has_answer: boolean
 }
 
-export function FilterBar({setParams}: FilterBarProps) {
+export function FilterBar({ setParams }: FilterBarProps) {
   const TrackButtonClasses = "cursor-pointer py-4 px-6 mt-1 mb-1 border rounded-xl transition duration-250 ease-in-out text-center"
   const FilterCheckboxClasses = "appearance-none shrink-0 cursor-pointer w-6 h-6 border-2 rounded-lg transition duration-250 ease-in-out"
   const [filters, setFilters] = useState<Filters>(
@@ -46,8 +46,7 @@ export function FilterBar({setParams}: FilterBarProps) {
         : true
     }))
   }
-  
-  let checked = !filters.has_answer
+
   return (
     <div className="grid gap-3 fixed h-fit w-64">
       <p className="text-xl">Trilhas</p>
