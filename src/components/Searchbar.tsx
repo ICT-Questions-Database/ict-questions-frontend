@@ -1,29 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { questionsParams } from "../models/QuestionsGetResponse";
 
-interface SearchbarProps{
+interface SearchbarProps {
   setParams: React.Dispatch<React.SetStateAction<questionsParams>>
 }
 
-export function Searchbar({setParams}: SearchbarProps) {
+export function Searchbar({ setParams }: SearchbarProps) {
   const [userQuery, setUserQuery] = useState<string>("")
-  
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setUserQuery(event.target.value);
-  }
-  
-  useEffect(() => {
-    const timerId = setTimeout(() => {
+    const currentUserQuery = event.target.value;
+
+    setUserQuery(currentUserQuery);
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
       setParams(prev => ({
         ...prev,
-        text: userQuery
+        text: currentUserQuery
       }))
-    }, 500)
+    }, 500);
+  }
+
+  useEffect(() => {
     return () => {
-      clearTimeout(timerId)
-    };
-  }, [userQuery, setParams]);
-  
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    }
+  }, [])
+
   return (
     <input
       className="rounded-md bg-white border border-[#D1D5DB] py-3 px-5 w-full"
