@@ -1,6 +1,6 @@
 import { Alternative } from "@/models/alternative";
 import { Question } from "@/models/question";
-import AlternativeContainer from "./AlternativeContainer";
+import AlternativeContainer from "./parts/AlternativeContainer";
 
 interface QuestionContainerProps {
     question: Question,
@@ -10,7 +10,7 @@ export default function QuestionContainer(
     { question }: QuestionContainerProps
 ) {
     return (
-        <div className="flex flex-col gap-5 p-4 rounded-md">
+        <div className="flex flex-col gap-5 px-5 py-6 rounded-md bg-white">
             <p>
                 {question.text}
             </p>
