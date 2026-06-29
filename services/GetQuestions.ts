@@ -1,6 +1,11 @@
-export default async function GetQuestions(){
+export default async function GetQuestions(route?: string){
+
+    let apiRoute;
+    if (route) apiRoute = route
+    else apiRoute = "http://localhost:8001/api/v1/questions/"
+
     const res = await fetch(
-        "http://localhost:8001/api/v1/questions/", {
+        apiRoute, {
             method: "GET",
             headers: { 
                 "Content-Type": "application/json"
