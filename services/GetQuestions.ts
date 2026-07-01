@@ -1,8 +1,12 @@
-export default async function GetQuestions(route?: string){
+export default async function GetQuestions(
+    filters: Record<string, string | undefined>
+){
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.set(key, value);
+    })
 
-    let apiRoute;
-    if (route) apiRoute = route
-    else apiRoute = "http://localhost:8001/api/v1/questions/"
+    const apiRoute = `http://localhost:8001/api/v1/questions?${params.toString()}`
 
     const res = await fetch(
         apiRoute, {

@@ -11,7 +11,10 @@ export default function QuestionContainer(
     { question }: QuestionContainerProps
 ) {
     return (
-        <div className="flex flex-col gap-5 px-5 py-6 rounded-md bg-white">
+        <div 
+            className="flex flex-col gap-5 px-5 transition-all duration-300 
+            py-6 rounded-md bg-white hover:shadow-lg"
+        >
             <div className="flex gap-30">
                 <p>{question.text}</p>
 
