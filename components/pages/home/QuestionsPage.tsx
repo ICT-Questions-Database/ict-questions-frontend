@@ -19,10 +19,10 @@ export default function QuestionsPage() {
 
         GetQuestions(filters)
             .then((res) => {
-                if (!cancelled) setData(res);
+                !cancelled && setData(res)
             })
             .finally(() => {
-                if (!cancelled) setIsLoading(false);
+                !cancelled && setIsLoading(false)
             })
         
         return () => {

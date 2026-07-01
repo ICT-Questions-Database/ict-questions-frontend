@@ -1,5 +1,5 @@
 export default async function GetQuestions(
-    filters: Record<string, string | undefined>
+    filters: Record<string, string>
 ){
     const params = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
