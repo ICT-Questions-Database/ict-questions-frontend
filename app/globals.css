@@ -5,6 +5,8 @@
   --foreground: #171717;
 
   --main-red: #A80000;
+
+  --border: #E2E8F0;
 }
 
 @theme inline {
@@ -12,6 +14,8 @@
   --color-foreground: var(--foreground);
 
   --color-main-red: var(--main-red);
+
+  --color-border: var(--border);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
