@@ -1,3 +1,5 @@
+"use server"
+
 export default async function GetQuestions(
     filters: Record<string, string>
 ){
@@ -6,7 +8,8 @@ export default async function GetQuestions(
         if (value) params.set(key, value);
     })
 
-    const apiRoute = `http://localhost:8001/api/v1/questions?${params.toString()}`
+    const backendURL = process.env.BACKEND_URL;
+    const apiRoute = `${backendURL}/api/v1/questions?${params.toString()}`
 
     const res = await fetch(
         apiRoute, {
