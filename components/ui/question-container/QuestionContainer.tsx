@@ -13,7 +13,7 @@ export default function QuestionContainer(
     return (
         <div 
             className="flex flex-col gap-5 px-5 transition-all duration-300 
-            py-6 rounded-md bg-white hover:shadow-lg"
+            py-6 rounded-md border border-border bg-white hover:shadow-lg"
         >
             <div className="flex gap-30">
                 <p>{question.text}</p>
