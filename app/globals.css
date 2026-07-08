@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F4F4F4;
-  --foreground: #171717;
+  --background: #FFFFFF;
+  --foreground: #0F172A;
 
-  --main-red: #A80000;
+  --primary: #A80000;
+  --primary-hover: #8C0000;
+  --primary-light: #FEF2F2;
 
   --border: #E2E8F0;
 }
@@ -13,7 +15,9 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-main-red: var(--main-red);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
 
   --color-border: var(--border);
 
