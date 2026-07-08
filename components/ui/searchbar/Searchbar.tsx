@@ -16,7 +16,7 @@ export default function Searchbar(){
         <div
             className="flex group transition-all duration-250 gap-3 
             border-2 border-border bg-white px-4 py-3 rounded-lg
-            focus-within:border-main-red"
+            focus-within:border-primary"
         >
             <input
                 className="focus:outline-none w-full"
@@ -37,7 +37,7 @@ export default function Searchbar(){
             >
                 <SearchIcon 
                     className="text-border 
-                    group-focus-within:text-main-red
+                    group-focus-within:text-primary
                     transition-all duration-250
                     "
                 />
