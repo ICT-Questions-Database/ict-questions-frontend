@@ -7,9 +7,10 @@ interface AlternativeContainerProps {
 export default function AlternativeContainer(
     { alternative }: AlternativeContainerProps
 ) {
-    const baseClassNames = "border rounded-md p-3 transition-all duration-300 hover:scale-101 "
-    const normalClassNames = baseClassNames + "border-[#F4F4F4] bg-[#F8F9FA]"
-    const correctClassNames = baseClassNames + "border-[#22C55E] bg-[#E0FFE7]"
+  const baseClassNames = `rounded-xl border py-3 px-5 transition-all duration-200
+      hover:scale-102 hover:-translate-y-1 cursor-pointer active:translate-y-0.5 active:scale-99 `
+    const normalClassNames = baseClassNames + "border-line bg-bg"
+    const correctClassNames = baseClassNames + "border-green bg-green-50"
     
     return (
         <div 
@@ -18,7 +19,7 @@ export default function AlternativeContainer(
                 : normalClassNames
             }
         >
-            <p className="text-[#808080]">
+            <p className="text-ink-soft font-sans text-sm">
                 {alternative.text}
             </p>
         </div>

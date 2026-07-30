@@ -1,47 +1,37 @@
 "use client"
 
 import SearchIcon from "@/components/icons/SearchIcon";
-import { useQuestionFilters } from "@/hooks/useQuestionFilters";
-import { useState } from "react";
+import Form from "next/form";
+import type { SubmitEvent } from "react";
 
-export default function Searchbar(){
-    const { filters, setFilter } = useQuestionFilters();
-    const [ localText, setLocalText ] = useState<string>(filters.text)
-
-    function search(){
-        setFilter("text", localText);
+export default function Searchbar({ text }: { text: string }) {
+    function prepareSearch(event: SubmitEvent<HTMLFormElement>) {
+        const input = event.currentTarget.elements.namedItem("text") as HTMLInputElement;
+        input.value = input.value.trim();
+        if (input.value === text) event.preventDefault();
     }
 
     return (
-        <div
-            className="flex group transition-all duration-250 gap-3 
-            border-2 border-border bg-white px-4 py-3 rounded-lg
-            focus-within:border-main-red"
+        <Form
+            action=""
+        className="flex gap-5 transition-all duration-400 rounded-xl border 
+            border-line bg-paper px-5 py-3 focus-within:ring-1 focus-within:ring-red-700"
+            role="search"
+            onSubmit={prepareSearch}
         >
+            <button type="submit" className="cursor-pointer" aria-label="Buscar questões">
+                <SearchIcon className="text-ink-soft" />
+        </button>
+        
             <input
-                className="focus:outline-none w-full"
+                key={text}
+                type="search"
+                name="text"
+                aria-label="Buscar questões"
+                className="w-full text-sm focus:outline-none font-mono"
                 placeholder="Busque por uma questão"
-
-                value={localText}
-                onChange={(e) => setLocalText(e.target.value)}
-
-                onKeyDown={(e) => {
-                    e.key === "Enter" && search();
-                }}
+                defaultValue={text}
             />
-
-            <button 
-                className="ml-auto 
-                hover:cursor-pointer"
-                onClick={search}
-            >
-                <SearchIcon 
-                    className="text-border 
-                    group-focus-within:text-main-red
-                    transition-all duration-250
-                    "
-                />
-            </button>
-        </div>
+        </Form>
     )
 }
