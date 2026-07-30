@@ -19,8 +19,8 @@ export default function Searchbar({ text }: { text: string }) {
             role="search"
             onSubmit={prepareSearch}
         >
-            <button type="submit" className="cursor-pointer" aria-label="Buscar questões">
-                <SearchIcon className="text-ink-soft" />
+        <button type="submit" className="cursor-pointer" aria-label="Buscar questões">
+            <SearchIcon className="text-ink-soft" />
         </button>
         
             <input

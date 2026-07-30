@@ -2,13 +2,14 @@ import QuestionContainer from "@/components/ui/question-container/QuestionContai
 import Searchbar from "@/components/ui/searchbar/Searchbar";
 import GetQuestions from "@/services/GetQuestions";
 import { Suspense } from "react";
+import Loading from "@/components/ui/loading/Loading";
 
 export default function QuestionsPage({ text }: { text: string }) {
     return (
         <div className="flex flex-col gap-8">
             <Searchbar text={text} />
             <div className="flex flex-col gap-10 bg-background">
-                <Suspense key={text} fallback={<p aria-live="polite">Carregando...</p>}>
+                <Suspense key={text} fallback={<Loading />}>
                     <Questions text={text} />
                 </Suspense>
             </div>
@@ -17,9 +18,9 @@ export default function QuestionsPage({ text }: { text: string }) {
 }
 
 async function Questions({ text }: { text: string }) {
-    const data = await GetQuestions({ text });
+  const data = await GetQuestions({ text });
 
-    return data.results.map((question) => (
-        <QuestionContainer key={question.id} question={question} />
-    ));
+  return data.results.map((question) => (
+    <QuestionContainer key={question.id} question={question} />
+  ));
 }
