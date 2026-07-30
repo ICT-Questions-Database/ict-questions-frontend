@@ -6,7 +6,7 @@ import { Suspense } from "react";
 export default function QuestionsPage({ text }: { text: string }) {
     return (
         <div className="flex flex-col gap-8">
-            <Searchbar key={text} />
+            <Searchbar text={text} />
             <div className="flex flex-col gap-10 bg-background">
                 <Suspense key={text} fallback={<p aria-live="polite">Carregando...</p>}>
                     <Questions text={text} />
