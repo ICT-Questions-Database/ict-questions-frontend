@@ -6,8 +6,6 @@ import GetQuestions from "@/services/GetQuestions"
 export default async function QuestionsPage() {
 
     const res: GetQuestionsResponse = await GetQuestions();
-    console.log(res.next)
-    console.log(res.previous)
     return (
         <div className="flex flex-col gap-10 bg-bg">
             {res.results.map((question: Question) => (
