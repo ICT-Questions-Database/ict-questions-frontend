@@ -18,7 +18,7 @@ export default function QuestionContainer(
       >
         <div className="flex flex-col gap-1">
           <p className="text-xs uppercase font-mono text-red-700">{question.track}</p>
-          <h2 className="font-semibold text-lg font-serif max-w-prose">{question.text}</h2>
+          <h2 className="font-semibold text-lg text-ink font-serif max-w-prose">{question.text}</h2>
         </div>
             
 
