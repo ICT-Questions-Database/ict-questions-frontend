@@ -1,7 +1,6 @@
 import { Alternative } from "@/models/alternative";
 import { Question } from "@/models/question";
 import AlternativeContainer from "./parts/AlternativeContainer";
-import TrackTag from "./parts/TrackTag";
 
 interface QuestionContainerProps {
     question: Question,
@@ -11,14 +10,16 @@ export default function QuestionContainer(
     { question }: QuestionContainerProps
 ) {
     return (
-        <div className="flex flex-col gap-5 rounded-md bg-paper px-5 py-6">
-            <div className="flex gap-30">
-                <p>{question.text}</p>
-
-                <div className="ml-auto">
-                    <TrackTag track={question.track} />
-                </div>
-            </div>
+      <div
+        className="flex flex-col gap-7 rounded-3xl 
+        transition-all duration-200
+        border border-line bg-paper py-8 px-9
+        hover:shadow-xl hover:border-red-700"
+      >
+        <div className="flex flex-col gap-1">
+          <p className="text-xs uppercase font-mono text-red-700">{question.track}</p>
+          <h2 className="font-semibold text-lg font-serif max-w-prose">{question.text}</h2>
+        </div>
             
 
             <div className="flex flex-col gap-3">
