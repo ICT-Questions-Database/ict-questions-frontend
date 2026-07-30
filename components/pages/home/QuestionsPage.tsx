@@ -1,47 +1,25 @@
-"use client"
-
 import QuestionContainer from "@/components/ui/question-container/QuestionContainer";
 import Searchbar from "@/components/ui/searchbar/Searchbar";
-import { useQuestionFilters } from "@/hooks/useQuestionFilters";
-import { GetQuestionsResponse } from "@/models/api-response/GetQuestionsResponse";
-import { Question } from "@/models/question";
-import GetQuestions from "@/services/GetQuestions"
-import { useEffect, useState } from "react";
+import GetQuestions from "@/services/GetQuestions";
+import { Suspense } from "react";
 
-export default function QuestionsPage() {
-    const { filters } = useQuestionFilters();
-    const [ data, setData ] = useState<GetQuestionsResponse | null>(null);
-    const [ isLoading, setIsLoading ] = useState<boolean>(true)
-
-    useEffect(() => {
-        let cancelled = false;
-        setIsLoading(true);
-
-        GetQuestions(filters)
-            .then((res) => {
-                !cancelled && setData(res)
-            })
-            .finally(() => {
-                !cancelled && setIsLoading(false)
-            })
-        
-        return () => {
-            cancelled = true;
-        }
-    }, [JSON.stringify(filters)]);
-
+export default function QuestionsPage({ text }: { text: string }) {
     return (
         <div className="flex flex-col gap-8">
-            <Searchbar />
+            <Searchbar key={text} />
             <div className="flex flex-col gap-10 bg-background">
-                {isLoading && <p>Carregando...</p>}
-                {data?.results.map((question: Question) => (
-                    <QuestionContainer 
-                        key={question.id}
-                        question={question} 
-                    />
-                ))}
+                <Suspense key={text} fallback={<p aria-live="polite">Carregando...</p>}>
+                    <Questions text={text} />
+                </Suspense>
             </div>
         </div>
     )
+}
+
+async function Questions({ text }: { text: string }) {
+    const data = await GetQuestions({ text });
+
+    return data.results.map((question) => (
+        <QuestionContainer key={question.id} question={question} />
+    ));
 }
