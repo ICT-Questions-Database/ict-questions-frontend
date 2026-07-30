@@ -2,10 +2,10 @@
 
 import SearchIcon from "@/components/icons/SearchIcon";
 import Form from "next/form";
-import type { FormEvent } from "react";
+import type { SubmitEvent } from "react";
 
 export default function Searchbar({ text }: { text: string }) {
-    function prepareSearch(event: FormEvent<HTMLFormElement>) {
+    function prepareSearch(event: SubmitEvent<HTMLFormElement>) {
         const input = event.currentTarget.elements.namedItem("text") as HTMLInputElement;
         input.value = input.value.trim();
         if (input.value === text) event.preventDefault();
