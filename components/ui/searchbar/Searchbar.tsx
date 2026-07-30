@@ -14,13 +14,14 @@ export default function Searchbar({ text }: { text: string }) {
     return (
         <Form
             action=""
-            className="flex gap-5 rounded-xl border border-line bg-paper px-4 py-3 focus-within:border-red-700 focus-within:ring-1 focus-within:ring-red-700"
+            className="flex gap-5 transition-all duration-400 rounded-xl border border-line bg-paper px-4 py-3 focus-within:ring-1 focus-within:ring-red-700"
             role="search"
             onSubmit={prepareSearch}
         >
             <button type="submit" className="cursor-pointer" aria-label="Buscar questões">
                 <SearchIcon className="text-ink-soft" />
-            </button>
+        </button>
+        
             <input
                 key={text}
                 type="search"
