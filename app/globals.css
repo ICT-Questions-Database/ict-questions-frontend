@@ -1,31 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F4F4F4;
-  --foreground: #171717;
+  /* Base */
+  --bg: #f7f1ea;
+  --paper: #ffffff;
+  --ink: #241016;
+  --ink-soft: #5a4a4e;
+  --line: #e9dfd6;
 
-  --main-red: #A80000;
+  /* Vermelho de marca */
+  --red-900: #5c0e1e;
+  --red-800: #7a1226;
+  --red-700: #93172e;
+  --red-600: #b21e36;
+  --red-050: #fbecec;
+
+  /* Âmbar */
+  --amber: #e8992c;
+  --amber-dark: #8a5b12;
+  --amber-050: #fcf0dc;
+
+  /* Verde */
+  --green: #2f8f5b;
+  --green-050: #e7f4ec;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
 
-  --color-main-red: var(--main-red);
+  --color-red-900: var(--red-900);
+  --color-red-800: var(--red-800);
+  --color-red-700: var(--red-700);
+  --color-red-600: var(--red-600);
+  --color-red-50: var(--red-050);
+
+  --color-amber: var(--amber);
+  --color-amber-dark: var(--amber-dark);
+  --color-amber-50: var(--amber-050);
+
+  --color-green: var(--green);
+  --color-green-50: var(--green-050);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
 }

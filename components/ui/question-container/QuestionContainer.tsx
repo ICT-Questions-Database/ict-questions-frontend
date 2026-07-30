@@ -11,7 +11,7 @@ export default function QuestionContainer(
     { question }: QuestionContainerProps
 ) {
     return (
-        <div className="flex flex-col gap-5 px-5 py-6 rounded-md bg-white">
+        <div className="flex flex-col gap-5 rounded-md bg-paper px-5 py-6">
             <div className="flex gap-30">
                 <p>{question.text}</p>
 

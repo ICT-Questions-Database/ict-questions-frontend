@@ -9,7 +9,7 @@ export default async function QuestionsPage() {
     console.log(res.next)
     console.log(res.previous)
     return (
-        <div className="flex flex-col gap-10 bg-background">
+        <div className="flex flex-col gap-10 bg-bg">
             {res.results.map((question: Question) => (
                 <QuestionContainer 
                     key={question.id}

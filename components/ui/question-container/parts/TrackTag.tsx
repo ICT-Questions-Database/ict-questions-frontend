@@ -7,9 +7,9 @@ export default function TrackTag(
 ) {
     return (
         <div
-            className="self-start rounded-3xl items-rounded-3xl py-1 px-6 bg-main-red" 
+            className="self-start rounded-3xl bg-red-700 px-6 py-1"
         >
-            <p className="text-white font-bold text-xs">{track}</p>
+            <p className="text-xs font-bold text-paper">{track}</p>
         </div>
     )
 }
