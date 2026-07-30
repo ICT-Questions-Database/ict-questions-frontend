@@ -18,7 +18,7 @@ export default function AlternativeContainer(
                 : normalClassNames
             }
         >
-            <p className="text-ink-soft font-sans">
+            <p className="text-ink-soft font-sans text-sm">
                 {alternative.text}
             </p>
         </div>
