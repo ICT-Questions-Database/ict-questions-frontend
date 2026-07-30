@@ -20,7 +20,13 @@ export default function QuestionsPage({ text }: { text: string }) {
 async function Questions({ text }: { text: string }) {
   const data = await GetQuestions({ text });
 
-  return data.results.map((question) => (
+  return data.count > 0 ? (data.results.map((question) => (
     <QuestionContainer key={question.id} question={question} />
-  ));
+  ))) : (
+      <p className="fixed inset-0 flex items-center 
+        justify-center font-mono text-sm"
+      >
+        Sem questões :(
+      </p>
+  )
 }
