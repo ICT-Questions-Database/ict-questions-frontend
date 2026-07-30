@@ -14,7 +14,8 @@ export default function Searchbar({ text }: { text: string }) {
     return (
         <Form
             action=""
-            className="flex gap-5 transition-all duration-400 rounded-xl border border-line bg-paper px-4 py-3 focus-within:ring-1 focus-within:ring-red-700"
+        className="flex gap-5 transition-all duration-400 rounded-xl border 
+            border-line bg-paper px-5 py-3 focus-within:ring-1 focus-within:ring-red-700"
             role="search"
             onSubmit={prepareSearch}
         >
@@ -27,7 +28,7 @@ export default function Searchbar({ text }: { text: string }) {
                 type="search"
                 name="text"
                 aria-label="Buscar questões"
-                className="w-full text-sm focus:outline-none"
+                className="w-full text-sm focus:outline-none font-mono"
                 placeholder="Busque por uma questão"
                 defaultValue={text}
             />
