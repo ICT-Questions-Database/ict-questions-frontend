@@ -1,6 +1,6 @@
 import { Alternative } from "@/models/alternative";
 import { Question } from "@/models/question";
-import AlternativeContainer from "./parts/AlternativeContainer";
+import AlternativeContainer from "./fragments/AlternativeContainer";
 
 interface QuestionContainerProps {
     question: Question,

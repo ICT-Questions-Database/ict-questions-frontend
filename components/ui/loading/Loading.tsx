@@ -1,4 +1,4 @@
-import SpinnerLoader from "./parts/SpinnerLoader";
+import SpinnerLoader from "./fragments/SpinnerLoader";
 
 export default function Loading() {
   return (
