@@ -20,19 +20,29 @@ export default function FilterArea({
     useState<boolean>(true)
   
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col">
       <div className="flex gap-3">
         <Searchbar text={text} queryString={queryString} />
         <ToggleFiltersButton
-          onClick={() => setIsFilterBoxOpen(!isFilterBoxOpen)}
+          isOpen={isFilterBoxOpen}
+          onClick={() => setIsFilterBoxOpen((open) => !open)}
         />
       </div>
-      {
-        isFilterBoxOpen &&
-        <Suspense fallback={null}>
-          <FilterBox />
-        </Suspense>
-      }
+      <div
+        id="question-filters"
+        inert={!isFilterBoxOpen}
+        className={`grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out motion-reduce:transition-none ${
+          isFilterBoxOpen
+            ? "mt-3 grid-rows-[1fr] opacity-100"
+            : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <Suspense fallback={null}>
+            <FilterBox />
+          </Suspense>
+        </div>
+      </div>
     </div>
   )
 }
