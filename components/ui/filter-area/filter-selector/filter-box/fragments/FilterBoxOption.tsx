@@ -13,7 +13,7 @@ export default function FilterBoxOption({
     <label
       className={`flex gap-3 w-full rounded-lg cursor-pointer 
         transition-all duration-200 hover:translate-x-0.5 p-3
-        border border-paper/15 text-sm font-medium
+        border border-paper/15 text-sm font-medium font-mono
         ${checked ? "bg-paper text-red-900" : "bg-paper/9 text-paper"}
       `}
     >
