@@ -8,13 +8,9 @@ import Searchbar from "./searchbar/Searchbar"
 
 interface FilterAreaProps {
   text: string;
-  queryString: string;
 }
 
-export default function FilterArea({
-  text,
-  queryString,
-}: FilterAreaProps) {
+export default function FilterArea({ text }: FilterAreaProps) {
 
   const [isFilterBoxOpen, setIsFilterBoxOpen] =
     useState<boolean>(true)
@@ -22,7 +18,7 @@ export default function FilterArea({
   return (
     <div className="flex flex-col">
       <div className="flex gap-3">
-        <Searchbar text={text} queryString={queryString} />
+        <Searchbar text={text} />
         <ToggleFiltersButton
           isOpen={isFilterBoxOpen}
           onClick={() => setIsFilterBoxOpen((open) => !open)}

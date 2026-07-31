@@ -7,10 +7,7 @@ import FilterArea from "@/components/ui/filter-area/FilterArea";
 export default function QuestionsPage({ text, queryString }: { text: string; queryString: string }) {
     return (
       <div className="flex flex-col gap-8 mt-10">
-        <FilterArea
-          text={text}
-          queryString={queryString}
-        />
+        <FilterArea text={text} />
         <div className="flex flex-col gap-10 bg-background">
           <Suspense key={queryString} fallback={<Loading />}>
             <Questions queryString={queryString} />
