@@ -35,8 +35,42 @@ export default function FilterBox() {
           ))}
         </div>
       </div>
+
+
       
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
+        <h1
+          className="text-paper font-serif text-lg font-semibold"
+        >
+          Filtros
+        </h1>
+        
+        <FilterBoxOption
+          key={"Todas"}
+          track={"Todas"}
+          checked={queryParams.getAll("has_answer").length === 0}
+          onChange={() => setQueryParam("has_answer", "")}
+        />
+
+        <div className="flex flex-col gap-3">
+          <FilterBoxOption
+            key={"has_answer"}
+            track={"Mostrar apenas questões respondidas."}
+            checked={
+              (queryParams.get("has_answer") === "true")
+                ? true
+                : false
+            }
+            onChange={() => {
+              const hasAnswer = queryParams.get("has_answer");
+              if (!hasAnswer || hasAnswer === "false") {
+                setQueryParam("has_answer", "true")
+              } else {
+                setQueryParam("has_answer", "false")
+              }}
+            }
+          />
+        </div>
       </div>
     </div>
   );
