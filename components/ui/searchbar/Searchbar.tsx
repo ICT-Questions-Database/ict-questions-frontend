@@ -4,7 +4,7 @@ import SearchIcon from "@/components/icons/SearchIcon";
 import Form from "next/form";
 import type { SubmitEvent } from "react";
 
-export default function Searchbar({ text }: { text: string }) {
+export default function Searchbar({ text, queryString }: { text: string; queryString: string }) {
     function prepareSearch(event: SubmitEvent<HTMLFormElement>) {
         const input = event.currentTarget.elements.namedItem("text") as HTMLInputElement;
         input.value = input.value.trim();
@@ -19,6 +19,11 @@ export default function Searchbar({ text }: { text: string }) {
             role="search"
             onSubmit={prepareSearch}
         >
+        {Array.from(new URLSearchParams(queryString))
+            .filter(([name]) => name !== "text")
+            .map(([name, value], index) => (
+                <input key={`${name}-${index}`} type="hidden" name={name} value={value} />
+            ))}
         <button type="submit" className="cursor-pointer" aria-label="Buscar questões">
             <SearchIcon className="text-ink-soft" />
         </button>

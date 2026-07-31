@@ -3,15 +3,10 @@ import "server-only";
 import type { GetQuestionsResponse } from "@/models/api-response/GetQuestionsResponse";
 
 export default async function GetQuestions(
-    filters: Record<string, string>
+    queryString: string
 ): Promise<GetQuestionsResponse> {
-    const params = new URLSearchParams();
-    Object.entries(filters).forEach(([key, value]) => {
-        if (value) params.set(key, value);
-    })
-
     const backendURL = process.env.BACKEND_URL;
-    const apiRoute = `${backendURL}/api/v1/questions?${params.toString()}`
+    const apiRoute = `${backendURL}/api/v1/questions${queryString ? `?${queryString}` : ""}`
 
     const res = await fetch(apiRoute);
 
