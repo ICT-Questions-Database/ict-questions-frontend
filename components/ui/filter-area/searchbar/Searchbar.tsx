@@ -1,6 +1,6 @@
 "use client"
 
-import SearchIcon from "@/components/icons/SearchIcon";
+import SearchIcon from "@/components/ui/filter-area/searchbar/fragments/SearchIcon";
 import Form from "next/form";
 import type { SubmitEvent } from "react";
 
@@ -14,7 +14,7 @@ export default function Searchbar({ text, queryString }: { text: string; querySt
     return (
         <Form
             action=""
-        className="flex gap-5 transition-all duration-400 rounded-xl border 
+        className="flex gap-5 transition-all duration-400 rounded-xl border w-full
             border-line bg-paper px-5 py-3 focus-within:ring-1 focus-within:ring-red-700"
             role="search"
             onSubmit={prepareSearch}

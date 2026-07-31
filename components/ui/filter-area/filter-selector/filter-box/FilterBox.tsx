@@ -21,7 +21,7 @@ export default function FilterBox() {
     }
     router.replace(`${pathname}?${next.toString()}`);
   }
-
+  
   return (
     <div className="grid grid-cols-2 gap-7 bg-red-800 px-9 py-7 rounded-3xl">
       <div className="flex flex-col gap-2">

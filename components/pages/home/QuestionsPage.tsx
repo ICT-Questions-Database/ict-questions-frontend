@@ -1,22 +1,21 @@
 import QuestionContainer from "@/components/ui/question-container/QuestionContainer";
-import Searchbar from "@/components/ui/searchbar/Searchbar";
 import GetQuestions from "@/services/GetQuestions";
 import { Suspense } from "react";
 import Loading from "@/components/ui/loading/Loading";
-import FilterBox from "@/components/ui/filter-box/FilterBox";
+import FilterArea from "@/components/ui/filter-area/FilterArea";
 
 export default function QuestionsPage({ text, queryString }: { text: string; queryString: string }) {
     return (
-      <div className="flex flex-col gap-8">
-        <Searchbar text={text} queryString={queryString} />
-        <Suspense fallback={null}>
-          <FilterBox />
-        </Suspense>
-          <div className="flex flex-col gap-10 bg-background">
-              <Suspense key={queryString} fallback={<Loading />}>
-                  <Questions queryString={queryString} />
-              </Suspense>
-          </div>
+      <div className="flex flex-col gap-8 mt-10">
+        <FilterArea
+          text={text}
+          queryString={queryString}
+        />
+        <div className="flex flex-col gap-10 bg-background">
+          <Suspense key={queryString} fallback={<Loading />}>
+            <Questions queryString={queryString} />
+          </Suspense>
+        </div>
       </div>
     )
 }
