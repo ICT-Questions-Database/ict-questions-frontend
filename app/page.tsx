@@ -1,7 +1,12 @@
 import QuestionsPage from "../components/pages/home/QuestionsPage";
 
 export default async function Home({ searchParams }: PageProps<"/">) {
-  const { text } = await searchParams;
+  const params = await searchParams;
+  const queryString = new URLSearchParams(
+    Object.entries(params).flatMap(([k, v]) =>
+      Array.isArray(v) ? v.map((x) => [k, x]) : [[k, v ?? ""]]
+    )
+  ).toString();
 
-  return <QuestionsPage text={Array.isArray(text) ? text[0] : text ?? ""} />
+  return <QuestionsPage queryString={queryString} text={Array.isArray(params.text) ? params.text[0] : params.text ?? ""} />
 }
