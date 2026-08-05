@@ -3,7 +3,7 @@ import GetQuestions from "@/services/GetQuestions";
 import { Suspense } from "react";
 import Loading from "@/components/ui/loading/Loading";
 import FilterArea from "@/components/ui/filter-area/FilterArea";
-import Pagination from "@/components/ui/PaginationArea/Pagination";
+import Pagination from "@/components/ui/Pagination/Pagination";
 
 export default function QuestionsPage({ text, queryString }: { text: string; queryString: string }) {
     return (
